@@ -19,4 +19,26 @@ async function selectUsers() {
 }
 // eg: rows = [ { username: 'abc', useremail: 'abc@gmail.com' } ]
 
-module.exports = { insertUser, selectUsers };
+async function selectUserByName(username) {
+  const { rows } = await pool.query(
+    `
+      SELECT * FROM users WHERE username = $1
+      `,
+    [username],
+  );
+  return rows[0];
+}
+// eg: { id: 1, username: 'abc', useremail: 'abc@gmail.com', userpassword: 'abc', admin: 0, member: 0
+
+async function selectUserById(id) {
+  const { rows } = await pool.query(
+    `
+      SELECT * FROM users WHERE id = $1
+      `,
+    [id],
+  );
+  return rows[0];
+}
+// eg: { id: 1, username: 'abc', useremail: 'abc@gmail.com', userpassword: 'abc', admin: 0, member: 0
+
+module.exports = { insertUser, selectUsers, selectUserByName, selectUserById };
