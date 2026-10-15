@@ -2,6 +2,7 @@ const { body, matchedData, validationResult } = require("express-validator");
 const bcript = require("bcryptjs");
 const db = require("../db/queries");
 const signUpRouter = require("../router/signUpRouter");
+const passport = require("passport");
 
 const validate = [
   body("username").trim().notEmpty().withMessage("Name can not be empty"),
@@ -24,7 +25,7 @@ const getSignUp = (req, res) => {
 
 const postSignUp = [
   validate,
-  async (req, res) => {
+  async (req, res, next) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
       return res.status(404).render("sign-up", { errors: result.array() });
@@ -32,8 +33,13 @@ const postSignUp = [
     const { username, useremail, password } = matchedData(req);
     const hashedPassword = await bcript.hash(password, 10);
     await db.insertUser(username, useremail, hashedPassword);
-    res.redirect("/");
+    next();
   },
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/log-in/failure",
+    failureMessage: true,
+  }),
 ];
 
 module.exports = { getSignUp, postSignUp };
