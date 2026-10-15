@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <% if (locals.user){%> 
+      <span><%= user.username%></span> 
+      <a href="log-out">log out</a>
+    <%}%> 
+    <h1>Home page</h1>
+    <a href="/sign-up">sign up</a>
+    <br>
+    <a href="/log-in">log in</a>
+    <br>
+    <% if(locals.users){%>
+        <ul>
+            <% users.forEach(user => {%>
+                <li><%= user.username%>, <%= user.useremail%> </li>
+            <%})%>
+        </ul>
+    <%}%>
+  </body>
+</html>
