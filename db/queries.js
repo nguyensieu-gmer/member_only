@@ -40,5 +40,21 @@ async function selectUserById(id) {
   return rows[0];
 }
 // eg: { id: 1, username: 'abc', useremail: 'abc@gmail.com', userpassword: 'abc', admin: 0, member: 0
+async function insertMessage(title, text, date, userId) {
+  const result = await pool.query(
+    `
+      INSERT INTO messages(title, message, added, userid) 
+      VALUES ($1, $2, $3, $4)
+    `,
+    [title, text, date, userId],
+  );
+  return result;
+}
 
-module.exports = { insertUser, selectUsers, selectUserByName, selectUserById };
+module.exports = {
+  insertUser,
+  selectUsers,
+  selectUserByName,
+  selectUserById,
+  insertMessage,
+};

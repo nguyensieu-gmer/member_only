@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/">go home</a>
+    <%- include('partials/errors')%>
+    <h1>Add message</h1>
+    <% if (locals.user) {%>
+    <form action="/add-message" method="post">
+        <label for="title">Title: </label>
+        <input type="text" name="title_msg" id="title">
+        <p></p>
+        <label for="text">Message</label>
+        <br>
+        <textarea name="text_msg" id="text"></textarea>
+        <br />
+        <button type="submit">Submit</button>
+    </form>
+    <%} else {%>
+        <h3>log in to add message</h3>
+    <%}%>
+  </body>
+</html>
