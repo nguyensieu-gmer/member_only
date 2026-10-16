@@ -18,7 +18,7 @@ const postAddMessage = [
     title_msg = title_msg ? title_msg : "No title";
     text_msg = text_msg ? text_msg : "No message";
     const date = new Date().toISOString().split("T")[0];
-    await db.insertMessage(title_msg, text_msg, date, req.user);
+    await db.insertMessage(title_msg, text_msg, date, req.user.id);
     return res.redirect("/");
   },
 ];
