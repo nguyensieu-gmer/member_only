@@ -51,10 +51,19 @@ async function insertMessage(title, text, date, userId) {
   return result;
 }
 
+async function selectAllMsg() {
+  const { rows } = await pool.query(`
+    SELECT * FROM messages
+    `);
+  return rows;
+}
+// eg: [{id: 1,title: 'abc',message: 'abc',added: 2026-10-15T17:00:00.000Z,userid: 1},]
+
 module.exports = {
   insertUser,
   selectUsers,
   selectUserByName,
   selectUserById,
   insertMessage,
+  selectAllMsg,
 };
