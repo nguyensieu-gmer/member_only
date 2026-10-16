@@ -6,20 +6,23 @@
     <title>Document</title>
   </head>
   <body>
-    <% if (locals.user){%> 
-      <span><%= user.username%></span> 
+    <% if (locals.username){%> 
+      <span><%= username%></span> 
       <a href="log-out">log out</a>
     <%}%> 
     <h1>Home page</h1>
     <a href="/sign-up">sign up</a>
-    <br>
+    <br />
     <a href="/log-in">log in</a>
-    <br>
+    <br />
     <a href="/add-message">Add message</a>
-    <% if(locals.users){%>
+    <% if(locals.messages){%>
         <ul>
-            <% users.forEach(user => {%>
-                <li><%= user.username%>, <%= user.useremail%> </li>
+            <% messages.forEach(message => {%>
+              <li>
+                <h4>title: <%= message.title%></h4>
+                <p>message: <%= message.message%></p>
+              </li>                
             <%})%>
         </ul>
     <%}%>
