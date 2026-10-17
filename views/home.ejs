@@ -16,12 +16,23 @@
     <a href="/log-in">log in</a>
     <br />
     <a href="/add-message">Add message</a>
+    <br />
+    <% if (locals.username){%> 
+      <a href="/member-ship">membership</a>
+    <%}%> 
     <% if(locals.messages){%>
         <ul>
             <% messages.forEach(message => {%>
               <li>
+                <% if (locals.member){%>
+                  <h3>username: <%= message.username%></h3>
+                  <h3>gmail: <%= message.useremail%></h3>
+                <%}%>
                 <h4>title: <%= message.title%></h4>
                 <p>message: <%= message.message%></p>
+                 <% if (locals.member){%>
+                  <p>Added: <%= new Date(message.added).toISOString().split("T")[0] %></p>
+                <%}%>
               </li>                
             <%})%>
         </ul>

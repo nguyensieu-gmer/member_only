@@ -48,16 +48,53 @@ async function insertMessage(title, text, date, userId) {
     `,
     [title, text, date, userId],
   );
-  return result;
+  return result.rowCount;
 }
 
-async function selectAllMsg() {
+async function selectAllMsgAndUser() {
   const { rows } = await pool.query(`
-    SELECT * FROM messages
+    SELECT * FROM messages JOIN users ON messages.id = userid
     `);
   return rows;
 }
-// eg: [{id: 1,title: 'abc',message: 'abc',added: 2026-10-15T17:00:00.000Z,userid: 1},]
+// result eg:  {
+//     id: 1,
+//     title: 'abc',
+//     message: 'i love u',
+//     added: 2026-10-15T17:00:00.000Z,
+//     userid: 1,
+//     username: 'abc',
+//     useremail: 'abc@gmail.com',
+//     userpassword: 'hashed code',
+//     admin: 0,
+//     member: 0
+//   },
+
+async function updateMemberShip(id) {
+  const result = await pool.query(
+    `
+    UPDATE users
+    SET member = 1
+    WHERE id = $1
+    `,
+    [id],
+  );
+  return result.rowCount;
+}
+// result of update is result.rowCount: != 0
+
+async function updateCancelMemberShip(id) {
+  const result = await pool.query(
+    `
+    UPDATE users
+    SET member = 0
+    WHERE id = $1
+
+    `,
+    [id],
+  );
+  return result.rowCount;
+}
 
 module.exports = {
   insertUser,
@@ -65,5 +102,7 @@ module.exports = {
   selectUserByName,
   selectUserById,
   insertMessage,
-  selectAllMsg,
+  selectAllMsgAndUser,
+  updateMemberShip,
+  updateCancelMemberShip,
 };
