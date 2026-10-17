@@ -9,6 +9,7 @@ const pgSession = require("connect-pg-simple")(session);
 const pool = require("./db/pool");
 const passport = require("./config/passport");
 const addMsgRouter = require("./router/addMsgRouter");
+const memberShipRouter = require("./router/memberShipRouter");
 
 // pg connect
 const sessionStore = new pgSession({
@@ -54,6 +55,7 @@ app.get("/log-out", (req, res, next) => {
   });
 });
 app.use("/add-message", addMsgRouter);
+app.use("/member-ship", memberShipRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
