@@ -59,6 +59,16 @@ app.use("/add-message", addMsgRouter);
 app.use("/member-ship", memberShipRouter);
 app.use("/admin", adminRouter);
 
+// error handler
+app.use((err, req, res, next) => {
+  if (err.statusCode === 401 && err.name === "Authenticated Error") {
+    return res
+      .status(err.statusCode || 401)
+      .render("authProblem", { message: err.message, name: err.name });
+  }
+  return next();
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {
   if (err) console.log(err);
