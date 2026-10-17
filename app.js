@@ -11,6 +11,7 @@ const passport = require("./config/passport");
 const addMsgRouter = require("./router/addMsgRouter");
 const memberShipRouter = require("./router/memberShipRouter");
 const adminRouter = require("./router/adminRouter");
+const isAuth = require("./middleware/isAuth");
 
 // pg connect
 const sessionStore = new pgSession({
@@ -55,9 +56,9 @@ app.get("/log-out", (req, res, next) => {
     res.redirect("/");
   });
 });
-app.use("/add-message", addMsgRouter);
-app.use("/member-ship", memberShipRouter);
-app.use("/admin", adminRouter);
+app.use("/add-message", isAuth, addMsgRouter);
+app.use("/member-ship", isAuth, memberShipRouter);
+app.use("/admin", isAuth, adminRouter);
 
 // error handler
 app.use((err, req, res, next) => {
