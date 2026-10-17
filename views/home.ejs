@@ -24,14 +24,19 @@
         <ul>
             <% messages.forEach(message => {%>
               <li>
-                <% if (locals.member){%>
+                <% if (locals.member || locals.admin){%>
                   <h3>username: <%= message.username%></h3>
                   <h3>gmail: <%= message.useremail%></h3>
                 <%}%>
                 <h4>title: <%= message.title%></h4>
                 <p>message: <%= message.message%></p>
-                 <% if (locals.member){%>
+                 <% if (locals.member || locals.admin){%>
                   <p>Added: <%= new Date(message.added).toISOString().split("T")[0] %></p>
+                <%}%>
+                <% if (locals.admin){%>
+                  <form action="/admin/remove-message/<%= message.messageid%>" method="post">
+                    <button type="submit">Delete message</button>
+                  </form>
                 <%}%>
               </li>                
             <%})%>

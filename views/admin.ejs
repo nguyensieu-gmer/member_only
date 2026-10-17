@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/">go home</a>
+    <% if (locals.admin) {%>
+        <h1>You have had admin right</h1>
+        <h1>Thank you for joining us</h1>
+        <a href="/admin/cancel">cancel admin right</a>
+    <%} else {%>
+        <h1>Enter admin key to gain admin right</h1>
+        <form action="/admin" method="post">
+        <label for="admin">Admin key:</label>
+        <input type="text" name="admin_key" id="admin" />
+        <button type="submit">submit</button>
+        </form>
+    <%}%>
+  </body>
+</html>

@@ -10,6 +10,7 @@ const pool = require("./db/pool");
 const passport = require("./config/passport");
 const addMsgRouter = require("./router/addMsgRouter");
 const memberShipRouter = require("./router/memberShipRouter");
+const adminRouter = require("./router/adminRouter");
 
 // pg connect
 const sessionStore = new pgSession({
@@ -56,6 +57,7 @@ app.get("/log-out", (req, res, next) => {
 });
 app.use("/add-message", addMsgRouter);
 app.use("/member-ship", memberShipRouter);
+app.use("/admin", adminRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (err) => {

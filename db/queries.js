@@ -53,19 +53,18 @@ async function insertMessage(title, text, date, userId) {
 
 async function selectAllMsgAndUser() {
   const { rows } = await pool.query(`
-    SELECT * FROM messages JOIN users ON users.id = userid
+    SELECT messages.id AS messageid, title, message, added, username, useremail, admin, member
+    FROM messages JOIN users ON users.id = userid
     `);
   return rows;
 }
 // result eg:  {
-//     id: 1,
+//     messageid: 1,
 //     title: 'abc',
 //     message: 'i love u',
 //     added: 2026-10-15T17:00:00.000Z,
-//     userid: 1,
 //     username: 'abc',
 //     useremail: 'abc@gmail.com',
-//     userpassword: 'hashed code',
 //     admin: 0,
 //     member: 0
 //   },
@@ -96,6 +95,40 @@ async function updateCancelMemberShip(id) {
   return result.rowCount;
 }
 
+async function updateAdmin(id) {
+  const { rowCount } = await pool.query(
+    `
+    UPDATE users
+    SET admin = 1
+    WHERE id = $1
+    `,
+    [id],
+  );
+  return rowCount;
+}
+
+async function updateCancelAdmin(id) {
+  const { rowCount } = await pool.query(
+    `
+    UPDATE users
+    SET admin = 0
+    WHERE id = $1
+    `,
+    [id],
+  );
+  return rowCount;
+}
+
+async function deleteMsgById(id) {
+  const { rowCount } = await pool.query(
+    `
+    DELETE FROM messages WHERE id = $1
+    `,
+    [id],
+  );
+  return rowCount;
+}
+
 module.exports = {
   insertUser,
   selectUsers,
@@ -105,4 +138,7 @@ module.exports = {
   selectAllMsgAndUser,
   updateMemberShip,
   updateCancelMemberShip,
+  updateAdmin,
+  updateCancelAdmin,
+  deleteMsgById,
 };
