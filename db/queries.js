@@ -53,7 +53,7 @@ async function insertMessage(title, text, date, userId) {
 
 async function selectAllMsgAndUser() {
   const { rows } = await pool.query(`
-    SELECT * FROM messages JOIN users ON messages.id = userid
+    SELECT * FROM messages JOIN users ON users.id = userid
     `);
   return rows;
 }
