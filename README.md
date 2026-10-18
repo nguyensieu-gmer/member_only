@@ -5,6 +5,7 @@
 - authorization include: admin and membership
 
   +membership can see email and date added
+
   +admin have membership right and can delete message
 
 # membership and admin
