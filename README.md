@@ -1,5 +1,8 @@
 # member_only
 
+- This is server-side application use express and postgresql
+- main features is CRUD and authetication
+
 # membership and admin
 
     + Enter 'member' to gain membership
