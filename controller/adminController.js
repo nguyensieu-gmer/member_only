@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const isAdmin = require("../middleware/isAdmin");
 
 const getAdminField = async (req, res) => {
   if (!req.user) {
@@ -20,10 +21,13 @@ const getCancelAdmin = async (req, res) => {
   res.redirect("/admin");
 };
 
-const postRemoveMsgByAdmin = async (req, res) => {
-  await db.deleteMsgById(req.params.messageid);
-  res.redirect("/");
-};
+const postRemoveMsgByAdmin = [
+  isAdmin,
+  async (req, res) => {
+    await db.deleteMsgById(req.params.messageid);
+    res.redirect("/");
+  },
+];
 
 module.exports = {
   getAdminField,
