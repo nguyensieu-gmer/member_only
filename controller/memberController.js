@@ -1,9 +1,6 @@
 const db = require("../db/queries");
 
 const getMemberShip = async (req, res) => {
-  if (!req.user) {
-    return res.redirect("/");
-  }
   const user = await db.selectUserById(req.user);
   res.render("membership", { member: user.member === 1 });
 };
