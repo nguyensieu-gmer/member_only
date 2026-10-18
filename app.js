@@ -67,7 +67,16 @@ app.use((err, req, res, next) => {
   if (err.statusCode === 401 && err.name === "Authenticated Error") {
     return res
       .status(err.statusCode || 401)
-      .render("authProblem", { message: err.message, name: err.name });
+      .render("authProblemVibe", { message: err.message, name: err.name });
+  }
+  return next();
+});
+
+app.use((err, req, res, next) => {
+  if (err.statusCode === 401 && err.name === "Authorization Error") {
+    return res
+      .status(err.statusCode || 401)
+      .render("authProblemVibe", { message: err.message, name: err.name });
   }
   return next();
 });
