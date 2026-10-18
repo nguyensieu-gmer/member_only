@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Message</title>
+
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="auth-page">
+    <main class="auth-container message-container">
+      <a href="/" class="home-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        Go home
+      </a>
+
+      <section class="auth-card message-card">
+        <div class="auth-icon">
+          <i class="fa-solid fa-feather-pointed"></i>
+        </div>
+
+        <p class="eyebrow">YOUR STORY BEGINS HERE</p>
+        <h1>Add message</h1>
+        <p class="auth-description">Have something to share? Write it down.</p>
+
+        <%- include('partials/errors') %>
+
+        <form action="/add-message" method="post" class="auth-form">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              name="title_msg"
+              id="title"
+              placeholder="Give your message a title..."
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="text">Message</label>
+            <textarea
+              name="text_msg"
+              id="text"
+              placeholder="Write your thoughts here..."
+              rows="7"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="auth-submit">
+            Publish message
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </section>
+
+      <p class="page-note">Every story deserves to be told.</p>
+    </main>
+  </body>
+</html>

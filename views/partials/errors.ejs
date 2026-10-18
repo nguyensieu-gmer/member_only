@@ -1,7 +1,10 @@
-<% if (locals.errors && locals.errors.length !== 0) {%> 
-    <ul>
-        <% errors.map(error => {%> 
-            <li><%= error.msg%></li>
-        <%})%>
-    </ul>
-<%}%>
+<% if (locals.errors && locals.errors.length !== 0) { %>
+  <ul class="error-list">
+    <% errors.forEach(error => { %>
+      <li class="error-item">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span><%= error.msg %></span>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>

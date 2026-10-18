@@ -20,7 +20,7 @@ const validate = [
 ];
 
 const getSignUp = (req, res) => {
-  res.render("sign-up");
+  res.render("sign-upVibe");
 };
 
 const postSignUp = [
@@ -28,7 +28,7 @@ const postSignUp = [
   async (req, res, next) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      return res.status(404).render("sign-up", { errors: result.array() });
+      return res.status(404).render("sign-upVibe", { errors: result.array() });
     }
     const { username, useremail, password } = matchedData(req);
     const hashedPassword = await bcript.hash(password, 10);

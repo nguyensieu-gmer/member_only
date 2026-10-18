@@ -1,6 +1,10 @@
-<% if (locals.error){%>
-  <div>
-    <h1>login failure</h1>
-    <h2><%= error%></h2>
+<% if (locals.error) { %>
+  <div class="login-error" role="alert">
+    <i class="fa-solid fa-circle-exclamation"></i>
+
+    <div class="login-error-content">
+      <h2>Login failed</h2>
+      <p><%= error %></p>
+    </div>
   </div>
-<%}%>
+<% } %>

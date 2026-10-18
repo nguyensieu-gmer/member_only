@@ -6,7 +6,7 @@ const getAdminField = async (req, res) => {
     res.redirect("/");
   }
   const user = await db.selectUserById(req.user);
-  res.render("admin", { admin: user.admin === 1 });
+  res.render("adminVibe", { admin: user.admin === 1 });
 };
 
 const postAdminField = async (req, res) => {

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= locals.name %></title>
+
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="auth-page">
+    <main class="auth-container notice-container">
+      <a href="/" class="home-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        Go home
+      </a>
+
+      <section class="auth-card notice-card">
+        <div class="notice-icon">
+          <i class="fa-solid fa-envelope-open-text"></i>
+        </div>
+
+        <p class="eyebrow">A MESSAGE FOR YOU</p>
+
+        <h1><%= locals.name %></h1>
+
+        <div class="notice-divider"></div>
+
+        <p class="notice-message"><%= locals.message %></p>
+
+        <a href="/" class="auth-submit notice-button">
+          Back to home
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </section>
+
+      <p class="page-note">Thank you for being here.</p>
+    </main>
+  </body>
+</html>

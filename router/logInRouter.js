@@ -3,7 +3,7 @@ const logInRouter = Router();
 const passport = require("passport");
 
 logInRouter.get("/", (req, res) => {
-  res.render("log-in");
+  res.render("log-inVibe");
 });
 logInRouter.post(
   "/",
@@ -18,7 +18,7 @@ logInRouter.get("/failure", (req, res) => {
   const messages = req.session.messages || [];
   const error = messages.pop();
 
-  res.render("log-in", { error });
+  res.render("log-inVibe", { error });
 
   // Xóa mảng nếu không còn thông báo
   if (messages.length === 0) {

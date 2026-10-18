@@ -2,7 +2,7 @@ const db = require("../db/queries");
 
 const getMemberShip = async (req, res) => {
   const user = await db.selectUserById(req.user);
-  res.render("membership", { member: user.member === 1 });
+  res.render("membershipVibe", { member: user.member === 1 });
 };
 
 const postMemberShip = async (req, res) => {

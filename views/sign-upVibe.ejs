@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | Literary Corner</title>
+
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body class="auth-page">
+    <main class="auth-container">
+      <a href="/" class="home-link">
+        <span aria-hidden="true">&larr;</span> Go home
+      </a>
+
+      <section class="auth-card">
+        <div class="auth-icon" aria-hidden="true">
+          <i class="fa-solid fa-book-open"></i>
+        </div>
+
+        <p class="eyebrow">Join our community</p>
+        <h1>Create an account</h1>
+        <p class="auth-description">
+          Start your own chapter in our little corner of literature.
+        </p>
+
+        <%- include('partials/errors.ejs') %>
+
+        <form action="/sign-up" method="post" class="auth-form">
+          <div class="form-group">
+            <label for="username">User Name <span>*</span></label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Choose a username"
+              autocomplete="username"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="useremail">Email <span>*</span></label>
+            <input
+              type="email"
+              name="useremail"
+              id="useremail"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password <span>*</span></label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Create a password"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="confirmpassword">Confirm password <span>*</span></label>
+            <input
+              type="password"
+              name="confirmpassword"
+              id="confirmpassword"
+              placeholder="Enter your password again"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+
+          <button type="submit" class="auth-submit">
+            Create account <span aria-hidden="true">&rarr;</span>
+          </button>
+        </form>
+
+        <p class="auth-footer">
+          Already have an account?
+          <a href="/log-in">Log in</a>
+        </p>
+      </section>
+
+      <p class="page-note">A good story begins with a single page.</p>
+    </main>
+  </body>
+</html>

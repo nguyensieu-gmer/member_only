@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <% if (locals.username) { %>
+        <span>Welcome, <%= username %></span>
+        <a href="/log-out">Log out</a>
+      <% } %>
+    </header>
+
+    <main>
+      <h1>Home page</h1>
+
+      <nav>
+        <a href="/sign-up">Sign up</a>
+        <a href="/log-in">Log in</a>
+        <a href="/add-message">Add message</a>
+
+        <% if (locals.username) { %>
+          <a href="/member-ship">Membership</a>
+        <% } %>
+      </nav>
+
+      <% if (locals.messages) { %>
+        <section class="messages">
+          <h2>Messages</h2>
+
+          <% messages.forEach(message => { %>
+            <article class="message-card">
+              <% if (locals.member || locals.admin) { %>
+                <p><strong>Username:</strong> <%= message.username %></p>
+                <p><strong>Email:</strong> <%= message.useremail %></p>
+              <% } %>
+
+              <h3><%= message.title %></h3>
+              <p><%= message.message %></p>
+
+              <% if (locals.member || locals.admin) { %>
+                <p class="date">
+                  Added: <%= new Date(message.added).toISOString().split("T")[0] %>
+                </p>
+              <% } %>
+
+              <% if (locals.admin) { %>
+                <form
+                  action="/admin/remove-message/<%= message.messageid %>"
+                  method="post"
+                >
+                  <button type="submit">Delete message</button>
+                </form>
+              <% } %>
+            </article>
+          <% }) %>
+        </section>
+      <% } %>
+    </main>
+  </body>
+</html>

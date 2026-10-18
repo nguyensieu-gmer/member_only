@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Access</title>
+
+    <link rel="stylesheet" href="/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+  </head>
+
+  <body class="auth-page">
+    <main class="auth-container admin-container">
+      <a href="/" class="home-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        Go home
+      </a>
+
+      <section class="auth-card admin-card">
+        <% if (locals.admin) { %>
+          <div class="admin-icon admin-icon-active">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+
+          <p class="eyebrow">PRIVILEGED ACCESS</p>
+          <h1>Administrator access granted</h1>
+
+          <p class="auth-description">
+            Thank you for joining us. You now have administrative privileges.
+          </p>
+
+          <div class="admin-status">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Admin privileges active</span>
+          </div>
+
+          <a href="/admin/cancel" class="admin-cancel">
+            <i class="fa-solid fa-shield"></i>
+            Revoke admin privileges
+          </a>
+        <% } else { %>
+          <div class="admin-icon">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+
+          <p class="eyebrow">RESTRICTED AREA</p>
+          <h1>Admin access</h1>
+
+          <p class="auth-description">
+            Enter your administrator key to request access.
+          </p>
+
+          <form action="/admin" method="post" class="auth-form">
+            <div class="form-group">
+              <label for="admin">Admin key</label>
+
+              <div class="input-wrapper">
+                <i class="fa-solid fa-key"></i>
+                <input
+                  type="password"
+                  name="admin_key"
+                  id="admin"
+                  placeholder="Enter your admin key"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="auth-submit">
+              Verify access
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <p class="admin-note">
+            <i class="fa-solid fa-circle-info"></i>
+            Authorized personnel only.
+          </p>
+        <% } %>
+      </section>
+
+      <p class="page-note">Manage with care and responsibility.</p>
+    </main>
+  </body>
+</html>

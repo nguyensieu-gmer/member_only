@@ -4,7 +4,7 @@ const { body, matchedData, validationResult } = require("express-validator");
 const validate = [body("title_msg").trim(), body("text_msg").trim()];
 
 const getAddMessage = (req, res) => {
-  res.render("add-message", { user: req.user });
+  res.render("add-messageVibe", { user: req.user });
 };
 
 const postAddMessage = [
@@ -12,7 +12,9 @@ const postAddMessage = [
   async (req, res) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      return res.status(404).render("add-message", { errors: result.array() });
+      return res
+        .status(404)
+        .render("add-messageVibe", { errors: result.array() });
     }
     let { title_msg, text_msg } = matchedData(req);
     title_msg = title_msg ? title_msg : "No title";

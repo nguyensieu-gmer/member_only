@@ -6,7 +6,7 @@ async function getHome(req, res) {
   const username = user ? user.username : undefined;
   const member = user ? user.member === 1 : false;
   const admin = user ? user.admin === 1 : false;
-  res.render("home", {
+  res.render("homeVibe", {
     username,
     messages,
     member,
